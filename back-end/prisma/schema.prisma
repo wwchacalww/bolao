@@ -31,3 +31,11 @@ model Games {
 
   @@map("games")
 }
+
+model Players {
+  id    String @id @default(uuid())
+  name  String
+  score Int
+
+  @@map("players")
+}
