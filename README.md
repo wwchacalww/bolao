@@ -12,6 +12,9 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Montar tela de palpites
 
 ## Backend - Node
- - [ ] Configurar node
- - [ ] criar entities
- - [ ] instalar prisma
+ - [X] Configurar node
+ - [X] criar entities
+ - [X] instalar prisma
+ - [X] Criar países 
+ - [ ] Consultar países
+ - [ ] Criar jogos

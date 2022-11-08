@@ -10,7 +10,6 @@ import iraFlag from "../assets/flags/Ira.svg";
 import usaFlag from "../assets/flags/USA.svg";
 import galFlag from "../assets/flags/PaisDeGales.svg";
 import { Palpite } from "../components/Palpite";
-import { PaperPlaneRight } from "phosphor-react";
 import { useState } from "react";
 
 type betProps = {
@@ -169,6 +168,7 @@ export function Bets() {
   const { id } = useParams<{ id: string; games: string }>();
   const [bets, setBets] = useState<betsProps[]>(apostas);
 
+  console.log(senegalFlag);
   const navigate = useNavigate();
 
   const [saveButtonDisable, setSaveButtonDisable] = useState(true);

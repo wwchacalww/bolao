@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Countries {
+  id    String @id @default(uuid())
+  name  String
+  slug  String
+  group String
+  flag  String
+
+  @@map("countries")
+}
+
+model Games {
+  id                String  @id @default(uuid())
+  played_at         String
+  first_country_id  String
+  second_country_id String
+  match_score       String?
+  status            String?
+  result            String?
+
+  @@map("games")
+}
