@@ -18,4 +18,6 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Criar países 
  - [X] Consultar países
  - [X] Criar jogos
- - [ ] Criar entity players
+ - [X] Criar entity players
+ - [ ] Criar entity bets
+ - [ ] 

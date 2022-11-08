@@ -28,6 +28,7 @@ model Games {
   match_score       String?
   status            String?
   result            String?
+  Bets              Bets[]
 
   @@map("games")
 }
@@ -36,6 +37,18 @@ model Players {
   id    String @id @default(uuid())
   name  String
   score Int
+  Bets  Bets[]
 
   @@map("players")
+}
+
+model Bets {
+  id        String  @id @default(uuid())
+  bet       String
+  player    Players @relation(fields: [player_id], references: [id])
+  player_id String
+  game      Games   @relation(fields: [game_id], references: [id])
+  game_id   String
+
+  @@map("bets")
 }
