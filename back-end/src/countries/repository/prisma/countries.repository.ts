@@ -8,4 +8,20 @@ export class CountriesRepository implements CountriesRepositoryInterface {
       data: country.toJSON(),
     });
   }
+
+  async findById(id: string): Promise<Country> {
+    const find = await prisma.countries.findFirst({ where: { id } });
+    if (find === null) {
+      throw new Error("Seleção não encontrada");
+    }
+    const country = new Country({
+      id: find.id,
+      name: find.name,
+      slug: find.slug,
+      group: find.group,
+      flag: find.flag,
+    });
+
+    return country;
+  }
 }
