@@ -16,5 +16,6 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] criar entities
  - [X] instalar prisma
  - [X] Criar países 
- - [ ] Consultar países
- - [ ] Criar jogos
+ - [X] Consultar países
+ - [X] Criar jogos
+ - [ ] Criar entity players
