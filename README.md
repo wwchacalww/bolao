@@ -19,5 +19,5 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Consultar países
  - [X] Criar jogos
  - [X] Criar entity players
- - [ ] Criar entity bets
- - [ ] 
+ - [X] Criar entity bets
+ - [X] Listar todas as partidas
