@@ -1,11 +1,17 @@
+import { Player } from "../../../players/domain/entities/player";
+import { Game } from "../../../games/domain/entity/game";
+import { BetsRepository } from "../../repository/prisma/bets.repository";
+import { Bet } from "../../domains/entity/bet";
+
 type InputAddBetDTO = {
-  game_id: string;
-  player_id: string;
+  game: Game;
+  player: Player;
   bet: string;
 };
 
 export type OutputBet = {
   id: string;
+  bet: string;
   player: {
     id: string;
     name: string;
@@ -22,14 +28,39 @@ export type OutputBet = {
       name: string;
       slug: string;
     };
-    bet: string;
   };
 };
 
 export class AddBetUsecase {
-  async execute({
-    game_id,
-    player_id,
-    bet,
-  }: InputAddBetDTO): Promise<OutputBet> {}
+  async execute({ game, player, bet }: InputAddBetDTO): Promise<OutputBet> {
+    const repository = new BetsRepository();
+    const betEntity = new Bet({
+      bet,
+      game,
+      player,
+    });
+    await repository.add(betEntity);
+
+    return {
+      id: betEntity.id,
+      bet: bet,
+      player: {
+        id: player.id,
+        name: player.name,
+      },
+      game: {
+        played_at: game.played_at,
+        first_country: {
+          id: game.first_country.id as string,
+          name: game.first_country.name,
+          slug: game.first_country.slug,
+        },
+        second_country: {
+          id: game.second_country.id as string,
+          name: game.second_country.name,
+          slug: game.second_country.slug,
+        },
+      },
+    };
+  }
 }

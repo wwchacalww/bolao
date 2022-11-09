@@ -1,5 +1,5 @@
-import { Player } from "../domain/entities/player";
-import { PlayersRepository } from "../repository/prisma/players.repository";
+import { Player } from "../../domain/entities/player";
+import { PlayersRepository } from "../../repository/prisma/players.repository";
 
 export type OutputPlayerDTO = {
   id: string;

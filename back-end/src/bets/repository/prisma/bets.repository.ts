@@ -11,7 +11,6 @@ export class BetsRepository implements BetsRepositoryInterface {
       bet: bet.bet,
     };
 
-    console.log(data);
     await prisma.bets.create({
       data,
     });

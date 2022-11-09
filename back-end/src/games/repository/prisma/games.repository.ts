@@ -1,6 +1,9 @@
 import { prisma } from "../../../@shared/db/prisma.client";
 import { Game } from "../../domain/entity/game";
-import { GamesRepositoryInterface } from "games/domain/repository/games-repository.interface";
+import {
+  GamesRepositoryInterface,
+  OutputFindByIdGame,
+} from "../../domain/repository/games-repository.interface";
 
 export class GamesRepository implements GamesRepositoryInterface {
   async add(game: Game): Promise<void> {
@@ -13,5 +16,30 @@ export class GamesRepository implements GamesRepositoryInterface {
         status: game.status,
       },
     });
+  }
+
+  async findById(id: string): Promise<OutputFindByIdGame> {
+    const find = await prisma.games.findFirst({ where: { id } });
+    if (!find) {
+      throw new Error("Partida não encontrada");
+    }
+    const {
+      first_country_id,
+      second_country_id,
+      played_at,
+      match_score,
+      result,
+      status,
+    } = find;
+
+    return {
+      id,
+      played_at,
+      first_country_id,
+      second_country_id,
+      match_score,
+      result,
+      status,
+    };
   }
 }
