@@ -24,4 +24,22 @@ export class CountriesRepository implements CountriesRepositoryInterface {
 
     return country;
   }
+
+  async all(): Promise<Country[]> {
+    const countries = await prisma.countries.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
+
+    return countries.map((country) => {
+      return new Country({
+        id: country.id,
+        name: country.name,
+        slug: country.slug,
+        flag: country.flag,
+        group: country.group,
+      });
+    });
+  }
 }

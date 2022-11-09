@@ -8,6 +8,8 @@ export type GameProps = {
   played_at: string;
   first_country: Country;
   second_country: Country;
+  match_score?: string;
+  status?: StatusType;
 };
 
 export class Game {
@@ -18,12 +20,20 @@ export class Game {
   private _match_score?: string;
   private _status?: StatusType;
 
-  constructor({ id, played_at, first_country, second_country }: GameProps) {
+  constructor({
+    id,
+    played_at,
+    first_country,
+    second_country,
+    match_score,
+    status,
+  }: GameProps) {
     this._id = id || v4();
     this._played_at = played_at;
     this._first_country = first_country;
     this._second_country = second_country;
-    this._status = "não jogado";
+    this._status = status || "não jogado";
+    this._match_score = match_score || "";
   }
 
   get id() {

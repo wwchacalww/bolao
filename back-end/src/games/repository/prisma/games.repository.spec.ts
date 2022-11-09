@@ -86,4 +86,10 @@ describe("Games Repository Test", () => {
       "Partida não encontrada"
     );
   });
+
+  it("should list all games", async () => {
+    const games = await repository.all();
+    console.log(games);
+    expect(1).toBe(1);
+  });
 });

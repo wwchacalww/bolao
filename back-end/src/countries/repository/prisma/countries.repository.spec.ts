@@ -64,4 +64,9 @@ describe("Countries Repository test", () => {
       await repository.findById("fake-id");
     }).rejects.toThrow("Seleção não encontrada");
   });
+
+  it("should list all countries", async () => {
+    const countries = await repository.all();
+    console.log(countries);
+  });
 });
