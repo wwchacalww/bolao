@@ -2,7 +2,7 @@ import { X } from "phosphor-react";
 import React, { useState } from "react";
 
 type palpiteProps = {
-  game: number;
+  game: string;
   date: string;
   first_slug: string;
   first_flag: string;
@@ -12,7 +12,7 @@ type palpiteProps = {
   second_country: number;
   first_get_value: (
     e: any,
-    game: number,
+    game: string,
     team: "first" | "second",
     setFirstValue: React.Dispatch<React.SetStateAction<string>>
   ) => any;

@@ -1,6 +1,10 @@
+import { v4 } from "uuid";
 import { prisma } from "../../../@shared/db/prisma.client";
 import { Bet } from "../../domains/entity/bet";
-import { BetsRepositoryInterface } from "../../domains/repository/bet-repository.interface";
+import {
+  BetsRepositoryInterface,
+  InputAddMassBetDTO,
+} from "../../domains/repository/bet-repository.interface";
 
 export class BetsRepository implements BetsRepositoryInterface {
   async add(bet: Bet): Promise<void> {
@@ -13,6 +17,22 @@ export class BetsRepository implements BetsRepositoryInterface {
 
     await prisma.bets.create({
       data,
+    });
+  }
+
+  async addMassBets(input: InputAddMassBetDTO): Promise<void> {
+    const { bets, player_id } = input;
+    bets.forEach(async (bet) => {
+      const data = {
+        id: v4(),
+        player_id,
+        game_id: bet.game_id,
+        bet: bet.bet,
+      };
+
+      await prisma.bets.create({
+        data,
+      });
     });
   }
 

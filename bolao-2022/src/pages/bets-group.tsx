@@ -6,7 +6,7 @@ import { Title } from "../components/Title";
 import { api } from "../services/api";
 
 type betProps = {
-  game: number;
+  game: string;
   played_at: string;
   first_slug: string;
   first_flag: string;
@@ -19,6 +19,14 @@ type betProps = {
 type betsProps = {
   group: string;
   bets: betProps[];
+};
+
+type inputBetsDTO = {
+  player_id: string;
+  bets: {
+    game_id: string;
+    bet: string;
+  }[];
 };
 
 type PlayerProps = {
@@ -36,8 +44,12 @@ export function BetsGroup() {
   const [saveButtonDisable, setSaveButtonDisable] = useState(true);
   const [nextButtonDisable, setNextButtonDisable] = useState(true);
   const [player, setPlayer] = useState<PlayerProps>();
-
   const { user_id } = useParams<{ user_id: string }>();
+
+  const [input, setInput] = useState<inputBetsDTO>({
+    player_id: user_id || "",
+    bets: [],
+  });
 
   api.get<PlayerProps>(`players/${user_id}`).then((response) => {
     setPlayer(response.data);
@@ -45,7 +57,7 @@ export function BetsGroup() {
 
   const handleGetValue = (
     target: any,
-    game: number,
+    game: string,
     team: "first" | "second",
     setValue: React.Dispatch<React.SetStateAction<string>>
   ) => {
@@ -55,11 +67,11 @@ export function BetsGroup() {
       target.value = "";
     } else {
       if (team === "first") {
-        bets[0].bets[game - 1].first_country = bet;
+        bets[0].bets[game].first_country = bet;
       }
 
       if (team === "second") {
-        bets[0].bets[game - 1].second_country = bet;
+        bets[0].bets[game].second_country = bet;
       }
       setBets(bets);
       let disable = false;
