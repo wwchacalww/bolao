@@ -4,7 +4,8 @@ import { AddGameUsecase } from "./add-game.usecase";
 
 export class AddGameController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { played_at, first_country_id, second_country_id } = request.body;
+    const { played_at, first_country_id, second_country_id, group } =
+      request.body;
     const findByIdCountryUsecase = new FindByIdCountryUsecase();
     const usecase = new AddGameUsecase();
     try {
@@ -18,6 +19,7 @@ export class AddGameController {
         played_at,
         first_country,
         second_country,
+        group,
       });
 
       return response.status(201).json(result);

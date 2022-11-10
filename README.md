@@ -10,6 +10,8 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
 ## Frontend - React
  - [X] Configurar REACT
  - [X] Montar tela de palpites
+ - [ ] configurar axios
+ - [ ] Listar Partidas do Backend
 
 ## Backend - Node
  - [X] Configurar node

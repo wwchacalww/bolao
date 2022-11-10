@@ -11,6 +11,7 @@ import usaFlag from "../assets/flags/USA.svg";
 import galFlag from "../assets/flags/PaisDeGales.svg";
 import { Palpite } from "../components/Palpite";
 import { useState } from "react";
+import { api } from "../services/api";
 
 type betProps = {
   game: number;
@@ -164,11 +165,12 @@ const apostas: betsProps[] = [
   },
 ];
 
+const games = await api.get("/games/all");
+
 export function Bets() {
   const { id } = useParams<{ id: string; games: string }>();
   const [bets, setBets] = useState<betsProps[]>(apostas);
 
-  console.log(senegalFlag);
   const navigate = useNavigate();
 
   const [saveButtonDisable, setSaveButtonDisable] = useState(true);

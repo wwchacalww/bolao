@@ -16,6 +16,7 @@ export class GamesRepository implements GamesRepositoryInterface {
         first_country_id: game.first_country.id as any,
         second_country_id: game.second_country.id as any,
         status: game.status,
+        group: game.group,
       },
     });
   }
@@ -48,7 +49,7 @@ export class GamesRepository implements GamesRepositoryInterface {
   async all(): Promise<Game[]> {
     const countries = await prisma.countries.findMany({
       orderBy: {
-        name: "asc",
+        group: "asc",
       },
     });
 
@@ -63,7 +64,7 @@ export class GamesRepository implements GamesRepositoryInterface {
     });
 
     const games = await prisma.games.findMany({
-      orderBy: { played_at: "asc" },
+      orderBy: { group: "asc" },
     });
 
     return games.map((game) => {
@@ -74,6 +75,7 @@ export class GamesRepository implements GamesRepositoryInterface {
         played_at: game.played_at,
         first_country: ft_ctry,
         second_country: sc_ctry,
+        group: game.group,
         match_score: game.match_score,
         status: game.status as any,
       });
