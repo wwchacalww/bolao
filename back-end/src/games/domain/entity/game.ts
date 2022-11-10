@@ -8,6 +8,7 @@ export type GameProps = {
   played_at: string;
   first_country: Country;
   second_country: Country;
+  group: string;
   match_score?: string;
   status?: StatusType;
 };
@@ -17,6 +18,7 @@ export class Game {
   private _played_at: string;
   private _first_country: Country;
   private _second_country: Country;
+  private _group: string;
   private _match_score?: string;
   private _status?: StatusType;
 
@@ -25,6 +27,7 @@ export class Game {
     played_at,
     first_country,
     second_country,
+    group,
     match_score,
     status,
   }: GameProps) {
@@ -32,6 +35,7 @@ export class Game {
     this._played_at = played_at;
     this._first_country = first_country;
     this._second_country = second_country;
+    this._group = group;
     this._status = status || "não jogado";
     this._match_score = match_score || "";
   }
@@ -50,6 +54,10 @@ export class Game {
 
   get second_country() {
     return this._second_country;
+  }
+
+  get group() {
+    return this._group;
   }
 
   get match_score() {
@@ -98,8 +106,10 @@ export class Game {
       played_at: this._played_at,
       first_country: this._first_country,
       second_country: this._second_country,
+      group: this._group,
       match_score: this._match_score,
       status: this.status,
+      result: this.result(),
     };
   }
 }

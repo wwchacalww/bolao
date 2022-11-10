@@ -23,6 +23,7 @@ describe("AddGameUsacase test", () => {
       played_at: "Dom 20/11 13:00",
       first_country,
       second_country,
+      group: "GRUPO A",
     });
     const find = await prisma.games.findFirst({ where: { id: result.id } });
 

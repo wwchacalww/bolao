@@ -30,6 +30,7 @@ describe("Games Repository Test", () => {
       played_at: "Dom 20/11 13:00",
       first_country,
       second_country,
+      group: "GRUPO A",
     });
 
     await repository.add(game);
@@ -65,6 +66,7 @@ describe("Games Repository Test", () => {
       played_at: "Dom 20/11 13:00",
       first_country,
       second_country,
+      group: "GRUPO A",
     });
 
     await repository.add(game);

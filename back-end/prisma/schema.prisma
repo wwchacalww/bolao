@@ -25,6 +25,7 @@ model Games {
   played_at         String
   first_country_id  String
   second_country_id String
+  group             String  @default("GRUPO A")
   match_score       String?
   status            String?
   result            String?

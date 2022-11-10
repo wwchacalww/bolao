@@ -21,6 +21,7 @@ describe("Game entity test", () => {
       played_at: "Dom 20/11 13:00",
       first_country,
       second_country,
+      group: "GRUPO A",
     });
 
     expect(game.id).toBeDefined();
@@ -51,6 +52,7 @@ describe("Game entity test", () => {
       played_at: "Dom 20/11 13:00",
       first_country,
       second_country,
+      group: "GRUPO A",
     });
 
     expect(game.match_score).toBe("");
