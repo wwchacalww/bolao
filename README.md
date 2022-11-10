@@ -10,8 +10,10 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
 ## Frontend - React
  - [X] Configurar REACT
  - [X] Montar tela de palpites
- - [ ] configurar axios
- - [ ] Listar Partidas do Backend
+ - [X] configurar axios
+ - [X] Listar Partidas do Backend
+ - [X] Capturar dados do usuário pelo id no backend
+ - [ ] Lançar os palpites no backend
 
 ## Backend - Node
  - [X] Configurar node
@@ -23,3 +25,5 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Criar entity players
  - [X] Criar entity bets
  - [X] Listar todas as partidas
+ - [X] FindPlayerById
+ - [ ] AddMassBets

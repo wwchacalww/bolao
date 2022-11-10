@@ -4,7 +4,6 @@ import { Header } from "../components/Header";
 import { Palpite } from "../components/Palpite";
 import { Title } from "../components/Title";
 import { api } from "../services/api";
-import CatarImg from "../assets/flags/Catar.svg";
 
 type betProps = {
   game: number;
@@ -22,18 +21,27 @@ type betsProps = {
   bets: betProps[];
 };
 
+type PlayerProps = {
+  id: string;
+  name: string;
+  score: number;
+};
+
 const games = await api.get<betsProps[]>("/games/all");
 
 const apostas = games.data;
 
 export function BetsGroup() {
-  const { user_id } = useParams<{ user_id: string }>();
   const [bets, setBets] = useState<betsProps[]>(apostas);
   const [saveButtonDisable, setSaveButtonDisable] = useState(true);
   const [nextButtonDisable, setNextButtonDisable] = useState(true);
+  const [player, setPlayer] = useState<PlayerProps>();
 
-  console.log(CatarImg);
-  const username = "Chacal";
+  const { user_id } = useParams<{ user_id: string }>();
+
+  api.get<PlayerProps>(`players/${user_id}`).then((response) => {
+    setPlayer(response.data);
+  });
 
   const handleGetValue = (
     target: any,
@@ -75,7 +83,7 @@ export function BetsGroup() {
   return (
     <>
       <Header
-        name={username as any}
+        name={player?.name || ""}
         avatarUrl="https://github.com/wwchacalww.png"
       />
       <div className="py-4 flex flex-col align-middle items-center">
