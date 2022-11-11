@@ -2,7 +2,7 @@ import { X } from "phosphor-react";
 import React, { useState } from "react";
 
 type palpiteProps = {
-  game: string;
+  game: number;
   date: string;
   first_slug: string;
   first_flag: string;
@@ -10,9 +10,11 @@ type palpiteProps = {
   second_slug: string;
   second_flag: string;
   second_country: number;
+  group: string;
   first_get_value: (
     e: any,
-    game: string,
+    group_number: number,
+    game: number,
     team: "first" | "second",
     setFirstValue: React.Dispatch<React.SetStateAction<string>>
   ) => any;
@@ -21,6 +23,7 @@ type palpiteProps = {
 export function Palpite({
   game,
   date,
+  group,
   first_slug,
   first_flag,
   first_country,
@@ -36,6 +39,42 @@ export function Palpite({
     second_country === 99 ? "" : String(second_country)
   );
 
+  let group_number = 0;
+
+  switch (group) {
+    case "GRUPO A":
+      group_number = 0;
+      break;
+
+    case "GRUPO B":
+      group_number = 1;
+      break;
+
+    case "GRUPO C":
+      group_number = 2;
+      break;
+
+    case "GRUPO D":
+      group_number = 3;
+      break;
+
+    case "GRUPO E":
+      group_number = 4;
+      break;
+
+    case "GRUPO F":
+      group_number = 5;
+      break;
+
+    case "GRUPO G":
+      group_number = 6;
+      break;
+
+    case "GRUPO H":
+      group_number = 7;
+      break;
+  }
+
   return (
     <div className="flex flex-col items-center mb-2">
       <span className="text-gray-400">{date}</span>
@@ -46,7 +85,13 @@ export function Palpite({
           type="text"
           className="w-6 h-6 rounded-md font-bold text-center"
           onChange={(evt) =>
-            first_get_value(evt.target, game, "first", setFirstValue)
+            first_get_value(
+              evt.target,
+              group_number,
+              game,
+              "first",
+              setFirstValue
+            )
           }
           value={firstValue}
         />
@@ -55,7 +100,13 @@ export function Palpite({
           type="text"
           className="w-6 h-6 rounded-md font-bold text-center"
           onChange={(evt) =>
-            first_get_value(evt.target, game, "second", setSecondValue)
+            first_get_value(
+              evt.target,
+              group_number,
+              game,
+              "second",
+              setSecondValue
+            )
           }
           value={secondValue}
         />

@@ -1,6 +1,7 @@
 import { GamesRepository } from "../../repository/prisma/games.repository";
 
 type betProps = {
+  game_id: string;
   game: number;
   played_at: string;
   first_slug: string;
@@ -33,6 +34,7 @@ export class AllGamesUsecase {
           group: groupCtrl,
           bets: [
             {
+              game_id: game.id,
               first_country: 99,
               first_flag: game.first_country.flag,
               first_slug: game.first_country.slug,
@@ -47,6 +49,7 @@ export class AllGamesUsecase {
       } else {
         game_number++;
         gamesOutput[arrayCtrl - 1].bets.push({
+          game_id: game.id,
           first_country: 99,
           first_flag: game.first_country.flag,
           first_slug: game.first_country.slug,

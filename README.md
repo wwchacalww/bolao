@@ -26,4 +26,4 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Criar entity bets
  - [X] Listar todas as partidas
  - [X] FindPlayerById
- - [ ] AddMassBets
+ - [X] AddMassBets
