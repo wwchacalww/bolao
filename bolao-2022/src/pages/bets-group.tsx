@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Palpite } from "../components/Palpite";
 import { Title } from "../components/Title";
 import { api } from "../services/api";
 
 type betProps = {
-  game: string;
+  game_id: string;
+  game: number;
   played_at: string;
   first_slug: string;
   first_flag: string;
@@ -42,14 +43,9 @@ const apostas = games.data;
 export function BetsGroup() {
   const [bets, setBets] = useState<betsProps[]>(apostas);
   const [saveButtonDisable, setSaveButtonDisable] = useState(true);
-  const [nextButtonDisable, setNextButtonDisable] = useState(true);
   const [player, setPlayer] = useState<PlayerProps>();
   const { user_id } = useParams<{ user_id: string }>();
-
-  const [input, setInput] = useState<inputBetsDTO>({
-    player_id: user_id || "",
-    bets: [],
-  });
+  const navigate = useNavigate();
 
   api.get<PlayerProps>(`players/${user_id}`).then((response) => {
     setPlayer(response.data);
@@ -57,39 +53,70 @@ export function BetsGroup() {
 
   const handleGetValue = (
     target: any,
-    game: string,
+    group_number: number,
+    game: number,
     team: "first" | "second",
     setValue: React.Dispatch<React.SetStateAction<string>>
   ) => {
     setValue(target.value);
     const bet = parseInt(target.value);
     if (!Number.isInteger(bet) || bet > 20) {
-      target.value = "";
+      setValue("");
     } else {
       if (team === "first") {
-        bets[0].bets[game].first_country = bet;
+        bets[group_number].bets[game - 1].first_country = bet;
       }
 
       if (team === "second") {
-        bets[0].bets[game].second_country = bet;
+        bets[group_number].bets[game - 1].second_country = bet;
       }
       setBets(bets);
       let disable = false;
-      bets[0].bets.forEach((bet) => {
-        if (bet.first_country === 99) {
-          disable = true;
-        }
-        if (bet.second_country === 99) {
-          disable = true;
-        }
+
+      bets.forEach((group) => {
+        group.bets.forEach((bet) => {
+          if (bet.first_country === 99) {
+            disable = true;
+          }
+          if (bet.second_country === 99) {
+            disable = true;
+          }
+        });
       });
+      // bets[0].bets.forEach((bet) => {
+      //   if (bet.first_country === 99) {
+      //     disable = true;
+      //   }
+      //   if (bet.second_country === 99) {
+      //     disable = true;
+      //   }
+      // });
+
       setSaveButtonDisable(disable);
     }
   };
 
-  const handleSaveGroupBets = () => {
-    console.log(bets);
-    setNextButtonDisable(false);
+  const handleSaveGroupBets = async () => {
+    const inputBets: inputBetsDTO = {
+      player_id: player?.id || "",
+      bets: [],
+    };
+
+    bets.forEach((group) => {
+      group.bets.map((bet) => {
+        const aposta = {
+          game_id: bet.game_id,
+          bet: `${bet.first_country}-${bet.second_country}`,
+        };
+        inputBets.bets.push(aposta);
+      });
+    });
+    const response = await api.post("/players/bets", {
+      player_id: inputBets.player_id,
+      bets: inputBets.bets,
+    });
+
+    console.log(response.status);
   };
 
   return (
@@ -112,6 +139,7 @@ export function BetsGroup() {
                 <Palpite
                   key={bet.game}
                   date={bet.played_at}
+                  group={aposta.group}
                   first_slug={bet.first_slug}
                   first_flag={bet.first_flag}
                   first_country={bet.first_country}
