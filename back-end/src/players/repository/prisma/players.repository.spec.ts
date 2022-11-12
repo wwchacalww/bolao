@@ -39,4 +39,19 @@ describe("PlayersRepository Test", () => {
       await repository.findById("fake-id");
     }).rejects.toThrow("Participante não encontrado");
   });
+
+  it("should list bets by player", async () => {
+    const result = await repository.listBetsByPlayer(
+      "50206225-d9cd-4134-b9ea-d3f20c895c38"
+    );
+
+    console.log(result);
+    expect(1).toBe(1);
+  });
+
+  it("should list only player with bets", async () => {
+    const result = await repository.listPlayersWithBets();
+    console.log(result);
+    expect(1).toBe(1);
+  });
 });
