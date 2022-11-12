@@ -116,14 +116,14 @@ export function BetsGroup() {
       bets: inputBets.bets,
     });
 
-    console.log(response.status);
+    navigate("/");
   };
 
   return (
     <>
       <Header
         name={player?.name || ""}
-        avatarUrl="https://github.com/wwchacalww.png"
+        avatarUrl={`/src/assets/fotos/${player?.id}.jpg`}
       />
       <div className="py-4 flex flex-col align-middle items-center">
         <Title text="FASE DE GRUPOS" type={1} />
