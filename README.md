@@ -14,7 +14,7 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Listar Partidas do Backend
  - [X] Capturar dados do usuário pelo id no backend
  - [X] Lançar os palpites no backend
- - [ ] Lista participantes que já lançaram os palpites no Home
+ - [X] Lista participantes que já lançaram os palpites no Home
 
 ## Backend - Node
  - [X] Configurar node
@@ -29,4 +29,4 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] FindPlayerById
  - [X] AddMassBets
  - [X] Listar palpites do participante
- - [ ] Listar participantes que já lançaram palpites
+ - [X] Listar participantes que já lançaram palpites

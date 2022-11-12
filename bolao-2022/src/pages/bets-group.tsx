@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Palpite } from "../components/Palpite";
@@ -36,6 +36,25 @@ type PlayerProps = {
   score: number;
 };
 
+type partidaProps = {
+  played_at: string;
+  first_slug: string;
+  first_flag: string;
+  second_slug: string;
+  second_flag: string;
+  bet: string;
+  result?: string;
+};
+
+type OutputListBestByPlayer = {
+  player: {
+    id: string;
+    name: string;
+    score: number;
+  };
+  bets: partidaProps[];
+};
+
 const games = await api.get<betsProps[]>("/games/all");
 
 const apostas = games.data;
@@ -47,9 +66,17 @@ export function BetsGroup() {
   const { user_id } = useParams<{ user_id: string }>();
   const navigate = useNavigate();
 
-  api.get<PlayerProps>(`players/${user_id}`).then((response) => {
-    setPlayer(response.data);
-  });
+  useEffect(() => {
+    api
+      .get<OutputListBestByPlayer>(`players/bets/${user_id}`)
+      .then((response) => {
+        const betsByPlayer = response.data;
+        setPlayer(betsByPlayer.player);
+        if (betsByPlayer.bets.length > 0) {
+          navigate(`/membro/${user_id}`);
+        }
+      });
+  }, []);
 
   const handleGetValue = (
     target: any,
