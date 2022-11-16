@@ -6,7 +6,6 @@ import {
   OutputListBestByPlayer,
   PlayersRepositoryInterface,
 } from "../../domain/repository/players-repository.interface";
-import { notEqual } from "assert";
 
 type partidaProps = {
   played_at: string;
@@ -160,6 +159,11 @@ export class PlayersRepository implements PlayersRepositoryInterface {
       }
     });
     return playerReturn;
+  }
+
+  async changeScore(player: Player): Promise<void> {
+    const { id, score } = player;
+    await prisma.players.update({ where: { id }, data: { score } });
   }
 }
 

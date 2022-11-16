@@ -81,4 +81,15 @@ export class GamesRepository implements GamesRepositoryInterface {
       });
     });
   }
+
+  async changeMatchScore(game: Game): Promise<void> {
+    await prisma.games.update({
+      where: { id: game.id },
+      data: {
+        match_score: game.match_score,
+        result: game.result(),
+        status: game.status,
+      },
+    });
+  }
 }

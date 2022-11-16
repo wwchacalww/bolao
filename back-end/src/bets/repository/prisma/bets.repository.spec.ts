@@ -134,4 +134,64 @@ describe("Bets repository test", () => {
     await prisma.bets.delete({ where: { id: bet.id } });
     await prisma.bets.delete({ where: { id: aposta.id } });
   });
+
+  it("should should list bets by game_id", async () => {
+    const first_country = new Country({
+      id: "e2af9485-c1d8-4f99-8d80-eb24ac09a514",
+      name: "Equador",
+      slug: "EQU",
+      group: "Grupo A",
+      flag: "flag",
+    });
+
+    const second_country = new Country({
+      id: "470c409b-ab05-495d-9024-2bb4ac83fb5f",
+      name: "Catar",
+      slug: "CAT",
+      group: "Grupo A",
+      flag: "flag",
+    });
+
+    const game = new Game({
+      id: "b114920c-cf0e-42bb-9b9c-0b7ae9172df9",
+      played_at: "Dom 20/11 13:00",
+      first_country,
+      second_country,
+      group: "Grupo A",
+    });
+
+    const junior = new Player({
+      id: "97ff1dfc-0691-4d2a-9491-5c2e8cecb796",
+      name: "Júnior",
+    });
+
+    const flavia = new Player({
+      id: "50206225-d9cd-4134-b9ea-d3f20c895c38",
+      name: "FLÁVIA",
+    });
+
+    const betJunior = new Bet({
+      player: junior,
+      game,
+      bet: "1-2",
+    });
+
+    const betFlavia = new Bet({
+      player: flavia,
+      game,
+      bet: "2-2",
+    });
+
+    await repository.add(betJunior);
+    await repository.add(betFlavia);
+
+    const bets = await repository.listBetsOnGame(game.id);
+
+    console.log(bets);
+
+    expect(bets.length).toEqual(2);
+
+    await prisma.bets.delete({ where: { id: betJunior.id } });
+    await prisma.bets.delete({ where: { id: betFlavia.id } });
+  });
 });
