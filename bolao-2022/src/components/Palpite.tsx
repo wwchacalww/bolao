@@ -82,7 +82,7 @@ export function Palpite({
         <strong className="font-bold text-white mr-2">{first_slug}</strong>
         <img src={first_flag} className="w-6 h-4" alt="" />
         <input
-          type="text"
+          type="number"
           className="w-6 h-6 rounded-md font-bold text-center"
           onChange={(evt) =>
             first_get_value(
@@ -97,7 +97,7 @@ export function Palpite({
         />
         <X size={30} className="text-gray-700" />
         <input
-          type="text"
+          type="number"
           className="w-6 h-6 rounded-md font-bold text-center"
           onChange={(evt) =>
             first_get_value(
