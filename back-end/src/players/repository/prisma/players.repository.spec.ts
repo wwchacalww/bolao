@@ -32,7 +32,7 @@ describe("PlayersRepository Test", () => {
 
     junior.score = 3;
 
-    await repository.changeScore(junior);
+    await repository.changeScore(junior.id, 3);
 
     const findUpJunior = await repository.findById(junior.id);
 

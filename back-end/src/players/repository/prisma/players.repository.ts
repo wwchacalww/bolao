@@ -161,9 +161,20 @@ export class PlayersRepository implements PlayersRepositoryInterface {
     return playerReturn;
   }
 
-  async changeScore(player: Player): Promise<void> {
-    const { id, score } = player;
-    await prisma.players.update({ where: { id }, data: { score } });
+  async changeScore(id: string, score: number): Promise<void> {
+    const find = await prisma.players.findUnique({ where: { id } });
+    if (!find) {
+      throw new Error("Jogador não encontrado");
+    }
+    console.log(find);
+    await prisma.players.update({
+      where: {
+        id,
+      },
+      data: {
+        score,
+      },
+    });
   }
 }
 

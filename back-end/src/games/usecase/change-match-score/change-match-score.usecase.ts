@@ -31,7 +31,12 @@ export class ChangeMatchScoreUsecase {
       const score = bet.player.score + points;
       const { player } = bet;
       player.score = score;
-      await playersRepository.changeScore(player);
+      try {
+        console.log(`id: ${bet.player.id} e score: ${score}`);
+        await playersRepository.changeScore(bet.player.id, score);
+      } catch (err: any) {
+        console.log(err.message);
+      }
     });
   }
 }

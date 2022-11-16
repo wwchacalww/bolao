@@ -83,7 +83,7 @@ describe("ChangeMatchScoreUsecase test", () => {
       }),
       await addBet.execute({
         game: gameEntity,
-        player: pEnts[0],
+        player: pEnts[1],
         bet: "3-1",
       }),
     ];
