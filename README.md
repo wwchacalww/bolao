@@ -30,3 +30,4 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] AddMassBets
  - [X] Listar palpites do participante
  - [X] Listar participantes que já lançaram palpites
+ - [ ] Atualizar resultados das partidas e calcutar os palpites

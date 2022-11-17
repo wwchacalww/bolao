@@ -6,7 +6,6 @@ import {
   OutputListBestByPlayer,
   PlayersRepositoryInterface,
 } from "../../domain/repository/players-repository.interface";
-import { notEqual } from "assert";
 
 type partidaProps = {
   played_at: string;
@@ -160,6 +159,22 @@ export class PlayersRepository implements PlayersRepositoryInterface {
       }
     });
     return playerReturn;
+  }
+
+  async changeScore(id: string, score: number): Promise<void> {
+    const find = await prisma.players.findUnique({ where: { id } });
+    if (!find) {
+      throw new Error("Jogador não encontrado");
+    }
+    console.log(find);
+    await prisma.players.update({
+      where: {
+        id,
+      },
+      data: {
+        score,
+      },
+    });
   }
 }
 

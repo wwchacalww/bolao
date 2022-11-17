@@ -17,6 +17,7 @@ export class FindByIdGameUsecase {
       played_at: find.played_at,
       first_country,
       second_country,
+      group: first_country.group,
     });
   }
 }

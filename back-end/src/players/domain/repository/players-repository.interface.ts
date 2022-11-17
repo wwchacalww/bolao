@@ -24,4 +24,5 @@ export interface PlayersRepositoryInterface {
   all(): Promise<Player[]>;
   listBetsByPlayer(id: string): Promise<OutputListBestByPlayer>;
   listPlayersWithBets(): Promise<Player[]>;
+  changeScore(id: string, score: number): Promise<void>;
 }

@@ -94,4 +94,43 @@ describe("Games Repository Test", () => {
     console.log(games);
     expect(1).toBe(1);
   });
+
+  it("should change match score, status and result", async () => {
+    const first_country = new Country({
+      name: "Fake A",
+      slug: "FAK",
+      group: "GRUPO FAKE",
+      flag: "/src/asset/flag/FakeA.svg",
+    });
+
+    const second_country = new Country({
+      name: "Fake B",
+      slug: "FAKB",
+      group: "GRUPO FAKE",
+      flag: "/src/asset/flag/FakeB.svg",
+    });
+
+    const game = new Game({
+      played_at: "Dom 20/11 13:00",
+      first_country,
+      second_country,
+      group: "GRUPO FAKE",
+    });
+
+    await repository.add(game);
+
+    game.match_score = "2-2";
+    game.status = "concluído";
+
+    await repository.changeMatchScore(game);
+    const find = await repository.findById(game.id);
+
+    console.log(game.result());
+
+    expect(find.status).toBe("concluído");
+    expect(find.result).toBe("Fake A empatou com Fake B");
+    expect(find.match_score).toBe("2-2");
+
+    await prisma.games.delete({ where: { id: game.id } });
+  });
 });
