@@ -33,11 +33,11 @@ export class AuthenticateUseCase {
 
     const token = createJWToken(tokenInput);
 
-    const refreshToken = await repository.createRefreshToken(user.id);
+    const refresh_token = await repository.createRefreshToken(user.id);
 
     return {
       token,
-      refreshToken,
+      refresh_token,
     };
   }
 }

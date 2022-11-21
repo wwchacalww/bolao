@@ -11,7 +11,7 @@ const authenticateController = new AuthenticateController();
 const refreshTokenController = new RefreshTokenController();
 const meController = new MeController();
 
-usersRoutes.post("/", ensureAuthenticate, createUserController.handle);
+usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/login", authenticateController.handle);
 usersRoutes.post("/refresh", refreshTokenController.handle);
 usersRoutes.get("/me", ensureAuthenticate, meController.handle);

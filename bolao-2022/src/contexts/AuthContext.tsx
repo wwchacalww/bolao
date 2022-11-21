@@ -41,7 +41,7 @@ export function signOut(broadCast: boolean = true) {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>({ email: "convidado" });
+  const [user, setUser] = useState<User>(null);
   const isAuthenticated = !!user;
   const navigate = useNavigate();
 
