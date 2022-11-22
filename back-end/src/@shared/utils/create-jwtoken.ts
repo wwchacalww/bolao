@@ -2,19 +2,21 @@ import { sign } from "jsonwebtoken";
 
 type UserJWTInput = {
   id: string;
+  name: string;
   email: string;
 };
 
-export function createJWToken({ id, email }: UserJWTInput): string {
+export function createJWToken({ id, name, email }: UserJWTInput): string {
   return sign(
     {
       id,
+      name,
       email,
     },
     "PUT_JWT_SECRET_IN_HERE",
     {
       subject: email,
-      expiresIn: 3600 * 12, // 12 hours
+      expiresIn: 30, // 12 hours
     }
   );
 }

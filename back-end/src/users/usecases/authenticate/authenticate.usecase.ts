@@ -28,6 +28,7 @@ export class AuthenticateUseCase {
 
     const tokenInput = {
       id: user.id,
+      name: user.name,
       email: user.email,
     };
 

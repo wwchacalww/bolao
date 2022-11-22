@@ -41,7 +41,7 @@ export async function ensureAuthenticate(
     console.log(error);
 
     return response.status(401).json({
-      message: "Invalid token",
+      message: "Token expired",
     });
   }
 }

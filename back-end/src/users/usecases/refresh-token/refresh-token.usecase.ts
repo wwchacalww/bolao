@@ -20,13 +20,14 @@ export class RefreshTokenUseCase {
 
     const tokenInput = {
       id: user.id,
+      name: user.name,
       email: user.email,
     };
     const token = createJWToken(tokenInput);
 
     return {
       token,
-      refresh_token,
+      refresh_token: refreshToken,
     };
   }
 }
