@@ -140,6 +140,8 @@ export class UserRepository implements UsersRepositoryInterface {
       },
     });
 
+    console.log({ result, token, user_id });
+
     return !!result;
   }
 

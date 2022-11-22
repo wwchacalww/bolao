@@ -13,7 +13,7 @@ const meController = new MeController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/login", authenticateController.handle);
-usersRoutes.post("/refresh", refreshTokenController.handle);
+usersRoutes.post("/refresh", ensureAuthenticate, refreshTokenController.handle);
 usersRoutes.get("/me", ensureAuthenticate, meController.handle);
 
 export { usersRoutes };

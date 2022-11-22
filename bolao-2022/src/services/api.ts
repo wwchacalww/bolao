@@ -16,17 +16,19 @@ api.interceptors.response.use(
   },
   (error: any) => {
     if (error.response?.status === 401) {
-      if (error.response.data?.message === "Token expired") {
+      if (error.response.data?.message === "jwt expired") {
         cookies = parseCookies();
 
         const { "bolao.refresh_token": refresh_token } = cookies;
 
         api
-          .post("/refresh", {
+          .post("/users/refresh", {
             refresh_token,
           })
           .then((response) => {
             const { token } = response.data;
+            console.log(response.data);
+
             setCookie(undefined, "bolao.token", token, {
               maxAge: 60 * 60 * 24 * 30, // 30 days
               path: "/",
@@ -43,6 +45,9 @@ api.interceptors.response.use(
             );
 
             api.defaults.headers["Authorization"] = `Bearer ${token}`;
+          })
+          .catch((err) => {
+            console.log(err.data);
           });
       }
     }

@@ -37,11 +37,9 @@ export async function ensureAuthenticate(
     request.user_id = id;
     request.user_email = email;
     next();
-  } catch (error) {
-    console.log(error);
-
+  } catch (error: any) {
     return response.status(401).json({
-      message: "Token expired",
+      message: error.message,
     });
   }
 }
