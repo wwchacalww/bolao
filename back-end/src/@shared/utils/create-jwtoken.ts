@@ -15,7 +15,7 @@ export function createJWToken({ id, name, email }: UserJWTInput): string {
     },
     "PUT_JWT_SECRET_IN_HERE",
     {
-      subject: email,
+      subject: id,
       expiresIn: 20, // 20 seconds
     }
   );

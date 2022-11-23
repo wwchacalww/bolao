@@ -4,6 +4,7 @@ import { RefreshTokenController } from "../../../users/usecases/refresh-token/re
 import { CreateUserController } from "../../../users/usecases/create-user/create-user.controller";
 import { ensureAuthenticate } from "../middlewares/ensure-authenticate";
 import { MeController } from "../../../users/usecases/me/me.controller";
+import { addUserInformationToRequest } from "../middlewares/add-user-refresh-token";
 
 const usersRoutes = Router();
 const createUserController = new CreateUserController();
@@ -13,7 +14,11 @@ const meController = new MeController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.post("/login", authenticateController.handle);
-usersRoutes.post("/refresh", ensureAuthenticate, refreshTokenController.handle);
+usersRoutes.post(
+  "/refresh",
+  addUserInformationToRequest,
+  refreshTokenController.handle
+);
 usersRoutes.get("/me", ensureAuthenticate, meController.handle);
 
 export { usersRoutes };

@@ -5,7 +5,7 @@ import { api } from "../services/api";
 
 type User = {
   email: string;
-};
+} | null;
 
 type SignInCredentials = {
   email: string;
@@ -25,7 +25,7 @@ type AuthProviderProps = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,8 +34,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       api
         .get("users/me")
         .then((response) => {
-          const { email } = response.data;
-          setUser({ email });
+          if (response) {
+            const { email } = response.data;
+            setUser({ email });
+          }
         })
         .catch((err) => {
           console.log(err);
