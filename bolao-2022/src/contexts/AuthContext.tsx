@@ -1,4 +1,4 @@
-import { parseCookies, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
@@ -34,13 +34,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       api
         .get("users/me")
         .then((response) => {
-          if (response) {
-            const { email } = response.data;
-            setUser({ email });
-          }
+          const { email } = response.data;
+          setUser({ email });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          destroyCookie(undefined, "bolao.token");
+          destroyCookie(undefined, "bolao.refresh_token");
+          navigate("/");
         });
     }
   }, []);

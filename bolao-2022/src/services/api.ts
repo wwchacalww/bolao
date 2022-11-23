@@ -1,6 +1,5 @@
 import axios from "axios";
 import { parseCookies, setCookie } from "nookies";
-import { config } from "process";
 
 let cookies = parseCookies();
 let isRefreshing = false;
@@ -69,7 +68,9 @@ api.interceptors.response.use(
         return new Promise((resolve, reject) => {
           failedRequestQueue.push({
             onSuccess: (token: string) => {
-              originalConfig.headers["Authorization"] = `Bearer ${token}`;
+              originalConfig.headers = {
+                Authorization: `Bearer ${token}`,
+              };
               // const { method, baseURL, url, data, headers } = originalConfig;
               resolve(api(originalConfig));
             },
@@ -79,10 +80,11 @@ api.interceptors.response.use(
           });
         });
       } else {
-        console.log("Deloga usuário");
-        // deslogar o usuário
+        console.log("delogar");
       }
     }
+
+    return Promise.reject(error);
   }
 );
 export { api };
