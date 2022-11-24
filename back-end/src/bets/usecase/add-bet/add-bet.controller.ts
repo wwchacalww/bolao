@@ -12,13 +12,13 @@ export class AddBetController {
       const usecase = new AddBetUsecase();
       const game = await findByIdGame.execute(game_id);
       const player = await findByIdPlayer.execute(player_id);
-      const result = await usecase.execute({
-        player,
-        game,
-        bet,
-      });
+      // const result = await usecase.execute({
+      //   player,
+      //   game,
+      //   bet,
+      // });
 
-      return response.status(201).json(result);
+      return response.status(201).json({ message: "Suspenso" });
     } catch (err: any) {
       return response.status(400).json(err.message);
     }

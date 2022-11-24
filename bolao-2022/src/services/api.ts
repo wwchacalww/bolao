@@ -1,13 +1,14 @@
 import axios from "axios";
 import { parseCookies, setCookie } from "nookies";
 import { signOut } from "../contexts/AuthContext";
+import { env } from "../config/env";
 
 let cookies = parseCookies();
 let isRefreshing = false;
 let failedRequestQueue: any[] = [];
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: env.baseURL,
   headers: {
     Authorization: `Bearer ${cookies["bolao.token"]}`,
   },
