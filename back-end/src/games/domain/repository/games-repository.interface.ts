@@ -15,4 +15,6 @@ export interface GamesRepositoryInterface {
   findById(id: string): Promise<OutputFindByIdGame>;
   all(): Promise<Game[]>;
   changeMatchScore(game: Game): Promise<void>;
+  changeGameTime(): Promise<void>;
+  gamesAndResults(): Promise<Game[]>;
 }

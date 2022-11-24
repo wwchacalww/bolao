@@ -10,6 +10,27 @@ datasource db {
   url      = "file:./dev.db?socket_timeout=3000&connection_limit=1"
 }
 
+model Users {
+  id             String          @id @default(uuid())
+  name           String
+  email          String          @unique
+  password       String
+  refresh_tokens RefreshTokens[]
+
+  @@map("users")
+}
+
+model RefreshTokens {
+  id         String   @id @default(uuid())
+  user_id    String?
+  token      String   @unique
+  created_at DateTime @default(now())
+  expires_at DateTime
+  User       Users?   @relation(fields: [user_id], references: [id])
+
+  @@map("refresh_tokens")
+}
+
 model Countries {
   id    String @id @default(uuid())
   name  String
@@ -29,6 +50,7 @@ model Games {
   match_score       String?
   status            String?
   result            String?
+  game_time         BigInt  @default(0)
   Bets              Bets[]
 
   @@map("games")
