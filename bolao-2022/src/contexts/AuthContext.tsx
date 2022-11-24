@@ -1,6 +1,6 @@
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
 type User = {
@@ -23,6 +23,12 @@ type AuthProviderProps = {
 };
 
 export const AuthContext = createContext({} as AuthContextData);
+
+export function signOut() {
+  destroyCookie(undefined, "bolao.token");
+  destroyCookie(undefined, "bolao.refresh_token");
+  return redirect("/");
+}
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>(null);

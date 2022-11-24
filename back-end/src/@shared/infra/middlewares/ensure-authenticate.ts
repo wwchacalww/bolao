@@ -27,8 +27,6 @@ export async function ensureAuthenticate(
     const usersRepository = new UserRepository();
     const user = await usersRepository.findById(id);
 
-    console.log({ id, email });
-
     if (!user) {
       console.log("User not found");
       return response.status(401).json({

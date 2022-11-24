@@ -15,7 +15,7 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Capturar dados do usuário pelo id no backend
  - [X] Lançar os palpites no backend
  - [X] Lista participantes que já lançaram os palpites no Home
- - [ ] Criar login para administrar os resultados
+ - [X] Criar login para administrar os resultados
  - [ ] Pagina de jogos
  - [ ] Página de Resultados 
  - [ ] Página de novas partidas
@@ -36,3 +36,6 @@ Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com
  - [X] Listar participantes que já lançaram palpites
  - [X] Atualizar resultados das partidas e calcutar os palpites
  - [X] Criar sistema de autenticação para login 
+ - [X] Adicionar coluna game_time na tabela games
+ - [X] Gerar data e hora dos jogos de acordo com a coluna
+ - [X] Listar jogos e resultados

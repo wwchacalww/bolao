@@ -6,6 +6,7 @@ import {
   OutputFindByIdGame,
 } from "../../domain/repository/games-repository.interface";
 import { findCountryById } from "../../../countries/domain/utils/find-country-by-id";
+import { changeGameTime } from "../../../@shared/utils/changeGameTime";
 
 export class GamesRepository implements GamesRepositoryInterface {
   async add(game: Game): Promise<void> {
@@ -82,6 +83,42 @@ export class GamesRepository implements GamesRepositoryInterface {
     });
   }
 
+  async gamesAndResults(): Promise<Game[]> {
+    const countries = await prisma.countries.findMany({
+      orderBy: {
+        group: "asc",
+      },
+    });
+
+    const countriesArray = countries.map((country) => {
+      return new Country({
+        id: country.id,
+        name: country.name,
+        slug: country.slug,
+        flag: country.flag,
+        group: country.group,
+      });
+    });
+
+    const games = await prisma.games.findMany({
+      orderBy: { game_time: "asc" },
+    });
+
+    return games.map((game) => {
+      const ft_ctry = findCountryById(countriesArray, game.first_country_id);
+      const sc_ctry = findCountryById(countriesArray, game.second_country_id);
+      return new Game({
+        id: game.id,
+        played_at: game.played_at,
+        first_country: ft_ctry,
+        second_country: sc_ctry,
+        group: game.group,
+        match_score: game.match_score,
+        status: game.status as any,
+      });
+    });
+  }
+
   async changeMatchScore(game: Game): Promise<void> {
     await prisma.games.update({
       where: { id: game.id },
@@ -90,6 +127,17 @@ export class GamesRepository implements GamesRepositoryInterface {
         result: game.result(),
         status: game.status,
       },
+    });
+  }
+
+  async changeGameTime(): Promise<void> {
+    const games = await prisma.games.findMany();
+    games.forEach(async (game) => {
+      const game_time = changeGameTime(game.played_at);
+      await prisma.games.update({
+        where: { id: game.id },
+        data: { game_time: Number(game_time) },
+      });
     });
   }
 }

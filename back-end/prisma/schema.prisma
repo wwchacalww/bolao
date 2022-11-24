@@ -50,6 +50,7 @@ model Games {
   match_score       String?
   status            String?
   result            String?
+  game_time         BigInt  @default(0)
   Bets              Bets[]
 
   @@map("games")
