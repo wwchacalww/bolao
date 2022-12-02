@@ -18,6 +18,7 @@ export class GamesRepository implements GamesRepositoryInterface {
         second_country_id: game.second_country.id as any,
         status: game.status,
         group: game.group,
+        game_time: Number(changeGameTime(game.played_at)),
       },
     });
   }
@@ -65,7 +66,10 @@ export class GamesRepository implements GamesRepositoryInterface {
     });
 
     const games = await prisma.games.findMany({
-      orderBy: { group: "asc" },
+      where: {
+        group: "OITAVAS",
+      },
+      orderBy: { game_time: "asc" },
     });
 
     return games.map((game) => {
