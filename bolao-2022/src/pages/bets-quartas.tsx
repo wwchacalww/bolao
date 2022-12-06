@@ -153,7 +153,7 @@ export function BetsQuartas() {
         avatarUrl={`/src/assets/fotos/${player?.id}.jpg`}
       />
       <div className="py-4 flex flex-col align-middle items-center">
-        <Title text="OITAVAS DE FINAL" type={1} />
+        <Title text="QUARTAS DE FINAL" type={1} />
       </div>
       {apostas.map((aposta) => {
         return (

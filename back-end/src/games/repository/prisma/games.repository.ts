@@ -65,9 +65,13 @@ export class GamesRepository implements GamesRepositoryInterface {
       });
     });
 
+    const today = new Date();
+    today.setHours(today.getHours() - 2);
     const games = await prisma.games.findMany({
       where: {
-        group: "OITAVAS",
+        game_time: {
+          gte: today.getTime(),
+        },
       },
       orderBy: { game_time: "asc" },
     });
