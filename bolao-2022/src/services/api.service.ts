@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { parseCookies, setCookie } from "nookies";
+import { env } from "../config/env";
 import { signOut } from "../contexts/AuthContext";
 
 let isRefreshing = false;
@@ -9,7 +10,7 @@ export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: env.baseURL,
     headers: {
       Authorization: `Bearer ${cookies["hakuna.token"]}`,
     },
