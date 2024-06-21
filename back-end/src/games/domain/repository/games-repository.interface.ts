@@ -1,5 +1,12 @@
 import { Game } from "../entity/game";
 
+export type GameplayProp = {
+  id: string;
+  name: string;
+  score: number;
+  bet: string;
+}
+
 export type OutputFindByIdGame = {
   id: string;
   played_at: string;
@@ -8,6 +15,7 @@ export type OutputFindByIdGame = {
   match_score?: string;
   result?: string;
   status?: string;
+  gameplays?: GameplayProp[];
 };
 
 export interface GamesRepositoryInterface {

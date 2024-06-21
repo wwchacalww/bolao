@@ -24,7 +24,22 @@ export class GamesRepository implements GamesRepositoryInterface {
   }
 
   async findById(id: string): Promise<OutputFindByIdGame> {
-    const find = await prisma.games.findFirst({ where: { id } });
+    const find = await prisma.games.findFirst({ 
+      where: { id },
+      include: {
+        Bets: true
+      }
+    });
+    const players = await prisma.players.findMany();
+    const jogadores = players.map( p => {
+      const bet = find.Bets.filter( b => b.player_id == p.id)
+      return {
+        id: p.id,
+        name: p.name,
+        score: p.score,
+        bet: bet[0].bet
+      }
+    });
     if (!find) {
       throw new Error("Partida não encontrada");
     }
@@ -45,6 +60,7 @@ export class GamesRepository implements GamesRepositoryInterface {
       match_score,
       result,
       status,
+      gameplays: jogadores
     };
   }
 
@@ -65,16 +81,21 @@ export class GamesRepository implements GamesRepositoryInterface {
       });
     });
 
-    const today = new Date();
-    today.setHours(today.getHours() - 2);
+
+    // const today = new Date();
+    // today.setHours(today.getHours() - 2);
+    // const games = await prisma.games.findMany({
+    //   where: {
+    //     game_time: {
+    //       gte: today.getTime(),
+    //     },
+    //   },
+    //   orderBy: { game_time: "asc" },
+    // });
     const games = await prisma.games.findMany({
-      where: {
-        game_time: {
-          gte: today.getTime(),
-        },
-      },
-      orderBy: { game_time: "asc" },
-    });
+      orderBy: { group: "asc"}
+    })
+    console.log(games)
 
     return games.map((game) => {
       const ft_ctry = findCountryById(countriesArray, game.first_country_id);

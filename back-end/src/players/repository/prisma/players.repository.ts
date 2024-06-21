@@ -87,7 +87,8 @@ export class PlayersRepository implements PlayersRepositoryInterface {
       },
       orderBy: {
         game: {
-          group: "asc",
+          // group: "asc",
+          game_time: "asc"
         },
       },
     });

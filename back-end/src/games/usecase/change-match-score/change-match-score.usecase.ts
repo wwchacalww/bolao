@@ -14,10 +14,10 @@ export class ChangeMatchScoreUsecase {
     const repository = new GamesRepository();
     const playersRepository = new PlayersRepository();
     const game = await findById.execute(game_id);
-    game.match_score = match_score;
-    game.status = status;
+    game.game.match_score = match_score;
+    game.game.status = status;
 
-    await repository.changeMatchScore(game);
+    await repository.changeMatchScore(game.game);
 
     const players = await playersRepository.listPlayersWithBets();
 

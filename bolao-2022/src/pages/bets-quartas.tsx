@@ -72,7 +72,7 @@ export function BetsQuartas() {
       .then((response) => {
         const betsByPlayer = response.data;
         setPlayer(betsByPlayer.player);
-        if (betsByPlayer.bets.length > 56) {
+        if (betsByPlayer.bets.length > 57) {
           navigate(`/membro/${user_id}`);
         }
       });

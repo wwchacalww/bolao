@@ -3,6 +3,8 @@ import { AllGamesUsecase } from "./all-games.usecase";
 
 export class AllGamesController {
   async handle(request: Request, response: Response): Promise<Response> {
+    console.log("Todos os jogos")
+
     try {
       const usecase = new AllGamesUsecase();
       const games = await usecase.execute();

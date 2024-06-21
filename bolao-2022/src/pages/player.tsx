@@ -48,7 +48,7 @@ export function Player() {
   return (
     <>
       <Header
-        name="COPA 2022"
+        name="EUROCOPA 2024"
         avatarUrl="https://logospng.org/download/copa-do-mundo-qatar-2022/logo-copa-do-mundo-qatar-2022-256.png"
       />
       <div className="py-4 flex flex-col align-middle items-center">
@@ -56,7 +56,7 @@ export function Player() {
       </div>
 
       <div className="flex flex-col items-center mb-2">
-        <div className="flex flex-col w-80 py-2 rounded-lg items-center justify-center bg-gray-900">
+        <div className="flex flex-col w-auto py-2 rounded-lg items-center justify-center bg-gray-900">
           <div className="flex flex-row w-full px-4 items-center">
             <img
               className="h-12 w-12 rounded-full"
@@ -73,7 +73,7 @@ export function Player() {
             </div>
 
             <div className="flex justify-end w-28 text-3xl font-bold">
-              <strong className="text-white"># 1º</strong>
+              <strong className="text-white"># </strong>
             </div>
             <div className="flex justify-center items-center w-10 h-10 ml-2">
               <Link to="/">
@@ -82,20 +82,63 @@ export function Player() {
             </div>
           </div>
 
-          {bets?.map((bet) => {
-            return (
-              <Partida
-                key={bet.played_at + bet.first_slug}
-                bet={bet.bet}
-                played_at={bet.played_at}
-                first_flag={bet.first_flag}
-                first_slug={bet.first_slug}
-                second_flag={bet.second_flag}
-                second_slug={bet.second_slug}
-                result={bet.result}
-              />
-            );
-          })}
+          <div className="flex flex-row w-full px-4 items-center">
+            <div className="flex flex-col items-center mb-2">
+            {bets?.map((bet, ind) => {
+              if(ind < 8) {
+                return (
+                  <Partida
+                    key={bet.played_at + bet.first_slug}
+                    bet={bet.bet}
+                    played_at={bet.played_at}
+                    first_flag={bet.first_flag}
+                    first_slug={bet.first_slug}
+                    second_flag={bet.second_flag}
+                    second_slug={bet.second_slug}
+                    result={bet.result}
+                  />
+                );
+              }
+            })}
+            </div>
+            <div className="flex flex-col items-center mb-2 mx-4">
+            {bets?.map((bet, ind) => {
+              if(ind >= 8 && ind <=15) {
+                return (
+                  <Partida
+                    key={bet.played_at + bet.first_slug}
+                    bet={bet.bet}
+                    played_at={bet.played_at}
+                    first_flag={bet.first_flag}
+                    first_slug={bet.first_slug}
+                    second_flag={bet.second_flag}
+                    second_slug={bet.second_slug}
+                    result={bet.result}
+                  />
+                );
+              }
+            })}
+            </div>
+            <div className="flex flex-col items-center mb-2">
+            {bets?.map((bet, ind) => {
+              if(ind >= 16 && ind <=23) {
+                return (
+                  <Partida
+                    key={bet.played_at + bet.first_slug}
+                    bet={bet.bet}
+                    played_at={bet.played_at}
+                    first_flag={bet.first_flag}
+                    first_slug={bet.first_slug}
+                    second_flag={bet.second_flag}
+                    second_slug={bet.second_slug}
+                    result={bet.result}
+                  />
+                );
+              }
+            })}
+            </div>
+
+          </div>
         </div>
       </div>
     </>

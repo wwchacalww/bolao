@@ -56,7 +56,6 @@ type OutputListBestByPlayer = {
 };
 
 const games = await api.get<betsProps[]>("/games/all");
-
 const apostas = games.data;
 
 export function BetsGroup() {

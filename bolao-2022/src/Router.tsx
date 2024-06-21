@@ -7,6 +7,7 @@ import { Games } from "./pages/games";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Player } from "./pages/player";
+import { Game } from "./pages/game";
 
 export function Router() {
   return (
@@ -19,6 +20,7 @@ export function Router() {
       <Route path="/membro/:user_id" element={<Player />} />
       <Route path="/login" element={<Login />} />
       <Route path="/games" element={<Games />} />
+      <Route path="/game/:game_id" element={<Game />} />
     </Routes>
   );
 }
