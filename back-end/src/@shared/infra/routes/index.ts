@@ -6,9 +6,9 @@ import { usersRoutes } from "./users.routes";
 
 const routes = Router();
 
-routes.use("/countries", countriesRoutes);
-routes.use("/games", gamesRoutes);
-routes.use("/players", playersRoutes);
-routes.use("/users", usersRoutes);
+routes.use("/api/countries", countriesRoutes);
+routes.use("/api/games", gamesRoutes);
+routes.use("/api/players", playersRoutes);
+routes.use("/api/users", usersRoutes);
 
 export { routes };

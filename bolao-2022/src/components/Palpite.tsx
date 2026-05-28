@@ -17,7 +17,7 @@ type palpiteProps = {
     game: number,
     team: "first" | "second",
     setFirstValue: React.Dispatch<React.SetStateAction<string>>
-  ) => any;
+  ) => void;
 };
 
 export function Palpite({

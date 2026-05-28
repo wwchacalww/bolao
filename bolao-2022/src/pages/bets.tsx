@@ -178,9 +178,15 @@ export function Bets() {
 
   const handleGetValue = (
     target: any,
+    group_number: number,
     game: number,
     team: "first" | "second",
     setValue: React.Dispatch<React.SetStateAction<string>>
+    // target: any,
+    // group_number: number,
+    // game: number,
+    // team: "first" | "second",
+    // setValue: React.Dispatch<React.SetStateAction<string>>
   ) => {
     setValue(target.value);
     const bet = parseInt(target.value);
@@ -228,6 +234,7 @@ export function Bets() {
             {aposta.bets.map((bet) => {
               return (
                 <Palpite
+                  group={aposta.group}
                   key={bet.game}
                   date={bet.date}
                   first_slug={bet.first_slug}

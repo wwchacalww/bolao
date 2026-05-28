@@ -22,7 +22,7 @@ export function setupAPIClient(ctx = undefined) {
     },
     (error: AxiosError) => {
       if (error.response?.status === 401) {
-        if (error.response.data?.code === "token.expired") {
+        if ((error.response.data as any)?.code === "token.expired") {
           cookies = parseCookies(ctx);
           const { "hakuna.refreshToken": refresh_token } = cookies;
           const originalConfig = error.config;
@@ -71,7 +71,14 @@ export function setupAPIClient(ctx = undefined) {
           return new Promise((resolve, reject) => {
             failedRequestQueue.push({
               onSuccess: (token: string) => {
-                originalConfig.headers["Authorization"] = `Bearer ${token}`;
+                if (!originalConfig) {
+                  reject(new Error("Original config is undefined"));
+                  return;
+                }
+                originalConfig.headers = {
+                  ...originalConfig.headers,
+                  Authorization: `Bearer ${token}`,
+                };
                 resolve(api(originalConfig));
               },
               onFailure: (err: AxiosError) => {
