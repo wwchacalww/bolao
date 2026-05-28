@@ -12,7 +12,6 @@ export class FindByIdGameUsecase {
     const findByIdCountry = new FindByIdCountryUsecase();
     const repository = new GamesRepository();
     const find = await repository.findById(id);
-    console.log(find);
     const first_country = await findByIdCountry.execute(find.first_country_id);
     const second_country = await findByIdCountry.execute(
       find.second_country_id

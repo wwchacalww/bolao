@@ -4,16 +4,19 @@ export type PlayerProps = {
   id?: string;
   name: string;
   score?: number;
+  group: string;
 };
 
 export class Player {
   private _id: string;
   private _name: string;
   private _score: number;
+  private _group: string;
 
-  constructor({ id, name, score }: PlayerProps) {
+  constructor({ id, name, score, group }: PlayerProps) {
     this._id = id || v4();
     this._name = name;
+    this._group = group;
     this._score = score || 0;
   }
 
@@ -23,6 +26,10 @@ export class Player {
 
   get name() {
     return this._name;
+  }
+
+  get group() {
+    return this._group;
   }
 
   get score() {
@@ -38,6 +45,7 @@ export class Player {
       id: this._id,
       name: this._name,
       score: this._score,
+      group: this._group,
     };
   }
 }

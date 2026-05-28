@@ -60,6 +60,7 @@ model Players {
   id    String @id @default(uuid())
   name  String
   score Int
+  group String
   Bets  Bets[]
 
   @@map("players")

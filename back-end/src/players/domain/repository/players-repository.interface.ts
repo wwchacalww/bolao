@@ -14,6 +14,7 @@ export type OutputListBestByPlayer = {
   player: {
     id: string;
     name: string;
+    group: string;
     score: number;
   };
   bets: partidaProps[];
@@ -23,6 +24,6 @@ export interface PlayersRepositoryInterface {
   findById(id: string): Promise<Player>;
   all(): Promise<Player[]>;
   listBetsByPlayer(id: string): Promise<OutputListBestByPlayer>;
-  listPlayersWithBets(): Promise<Player[]>;
+  listPlayersWithBets(group?: string): Promise<Player[]>;
   changeScore(id: string, score: number): Promise<void>;
 }

@@ -42,36 +42,51 @@ export function Palpite({
   let group_number = 0;
 
   switch (group) {
-    case "GRUPO A":
+    case "Grupo A":
       group_number = 0;
       break;
 
-    case "GRUPO B":
+    case "Grupo B":
       group_number = 1;
       break;
 
-    case "GRUPO C":
+    case "Grupo C":
       group_number = 2;
       break;
 
-    case "GRUPO D":
+    case "Grupo D":
       group_number = 3;
       break;
 
-    case "GRUPO E":
+    case "Grupo E":
       group_number = 4;
       break;
 
-    case "GRUPO F":
+    case "Grupo F":
       group_number = 5;
       break;
 
-    case "GRUPO G":
+    case "Grupo G":
       group_number = 6;
       break;
 
-    case "GRUPO H":
+    case "Grupo H":
       group_number = 7;
+      break;
+    case "Grupo I":
+      group_number = 8;
+      break;
+
+    case "Grupo J":
+      group_number = 9;
+      break;
+
+    case "Grupo K":
+      group_number = 10;
+      break;
+
+    case "Grupo L":
+      group_number = 11;
       break;
   }
 

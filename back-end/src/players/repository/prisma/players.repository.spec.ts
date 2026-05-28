@@ -13,10 +13,12 @@ describe("PlayersRepository Test", () => {
   it("should create, update, find and list players", async () => {
     const junior = new Player({
       name: "Júnior Fake",
+      group: "Grupo A",
     });
 
     const suene = new Player({
       name: "Suene Fake",
+      group: "Grupo A",
     });
 
     await repository.add(junior);

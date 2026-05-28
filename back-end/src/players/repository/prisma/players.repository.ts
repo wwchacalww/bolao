@@ -23,6 +23,7 @@ export class PlayersRepository implements PlayersRepositoryInterface {
       data: {
         id: player.id,
         name: player.name,
+        group: player.group,
         score: player.score,
       },
     });
@@ -39,6 +40,7 @@ export class PlayersRepository implements PlayersRepositoryInterface {
     return new Player({
       id: player.id,
       name: player.name,
+      group: player.group,
       score: player.score,
     });
   }
@@ -50,10 +52,11 @@ export class PlayersRepository implements PlayersRepositoryInterface {
     }
 
     return players.map((player) => {
-      const { id, name, score } = player;
+      const { id, name, score, group } = player;
       return new Player({
         id,
         name,
+        group,
         score,
       });
     });
@@ -130,14 +133,18 @@ export class PlayersRepository implements PlayersRepositoryInterface {
       player: {
         id,
         name: player.name,
+        group: player.group,
         score: total_score,
       },
       bets,
     };
   }
 
-  async listPlayersWithBets(): Promise<Player[]> {
+  async listPlayersWithBets(group?: string): Promise<Player[]> {
     const players = await prisma.players.findMany({
+      where: {
+        group: group || "CARTAXO",
+      },
       include: {
         Bets: true,
       },
@@ -148,12 +155,13 @@ export class PlayersRepository implements PlayersRepositoryInterface {
 
     const playerReturn: Player[] = [];
     players.forEach((player) => {
-      const { id, name, score, Bets } = player;
+      const { id, name, group, score, Bets } = player;
       if (Bets.length > 0) {
         playerReturn.push(
           new Player({
             id,
             name,
+            group,
             score,
           })
         );

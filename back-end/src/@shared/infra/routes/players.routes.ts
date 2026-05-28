@@ -20,6 +20,6 @@ playersRoutes.post("/bet", addBetController.handle);
 playersRoutes.get("/:player_id", findByIdController.handle);
 playersRoutes.get("/bets/:player_id", listBetsByPlayerController.handle);
 playersRoutes.post("/bets", addMassBetController.handle);
-playersRoutes.get("/with-bets/players", listPlayersWithBetsController.handle);
+playersRoutes.get("/with-bets/players/:group_id", listPlayersWithBetsController.handle);
 
 export { playersRoutes };

@@ -1,9 +1,9 @@
 import { PlayersRepository } from "../../repository/prisma/players.repository";
 
 export class ListPlayersWithBetsUsecase {
-  async execute() {
+  async execute(group?: string) {
     const repository = new PlayersRepository();
-    const players = await repository.listPlayersWithBets();
+    const players = await repository.listPlayersWithBets(group = group || "CARTAXO");
     let rank = 0;
     let score = 0;
     return players.map((player) => {
@@ -13,6 +13,7 @@ export class ListPlayersWithBetsUsecase {
         return {
           id: player.id,
           name: player.name,
+          group: player.group,
           score: player.score,
           rank,
         };
@@ -22,6 +23,7 @@ export class ListPlayersWithBetsUsecase {
         return {
           id: player.id,
           name: player.name,
+          group: player.group,
           score: player.score,
           rank,
         };

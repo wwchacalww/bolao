@@ -8,11 +8,15 @@ import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { Player } from "./pages/player";
 import { Game } from "./pages/game";
+import { Cartaxo } from "./pages/cartaxo";
+import { Realville } from "./pages/realville";
 
 export function Router() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/cartaxo" element={<Cartaxo />} />
+      <Route path="/realville" element={<Realville />} />
       <Route path="/palpites/:id" element={<Bets />} />
       <Route path="/palpites/grupos/:user_id" element={<BetsGroup />} />
       <Route path="/palpites/oitavas/:user_id" element={<BetsOcto />} />

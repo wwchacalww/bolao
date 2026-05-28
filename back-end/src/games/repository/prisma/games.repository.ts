@@ -33,13 +33,17 @@ export class GamesRepository implements GamesRepositoryInterface {
     const players = await prisma.players.findMany();
     const jogadores = players.map( p => {
       const bet = find.Bets.filter( b => b.player_id == p.id)
-      return {
-        id: p.id,
-        name: p.name,
-        score: p.score,
-        bet: bet[0].bet
+      if(bet.length !== 0){
+        return {
+          id: p.id,
+          name: p.name,
+          group: p.group,
+          score: p.score,
+          bet: bet[0].bet
+        }
       }
     });
+
     if (!find) {
       throw new Error("Partida não encontrada");
     }
@@ -51,7 +55,6 @@ export class GamesRepository implements GamesRepositoryInterface {
       result,
       status,
     } = find;
-
     return {
       id,
       played_at,

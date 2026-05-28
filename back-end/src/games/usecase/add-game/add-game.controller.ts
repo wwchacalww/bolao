@@ -8,6 +8,7 @@ export class AddGameController {
       request.body;
     const findByIdCountryUsecase = new FindByIdCountryUsecase();
     const usecase = new AddGameUsecase();
+    
     try {
       const first_country = await findByIdCountryUsecase.execute(
         first_country_id

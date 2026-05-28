@@ -1,6 +1,6 @@
 # Bolão da Copa de 2022
 
-Aplicativo com frontend em REACT e backend em NODEJS para gerenciamento de um bolão para os jogos da Copa de 2022.
+Aplicativo com frontend em REACT e backend em NODEJS para gerenciamento de um bolão para os jogos da Copa de 2026.
 
 ## Como funciona 
 Os participantes iram fazer seus palpites em todos jogos da copa e de acordo com os resultados e placares os jogadores iram pontuando.
