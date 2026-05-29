@@ -27,7 +27,7 @@ export function Home() {
               <div className="flex flex-col pl-4 w-56 gap-1">
                 <strong className="text-white font-bold text-base">Família Cartaxo</strong>
                 <span className="font-semibold text-gray-400 text-sm">
-                  15 participantes
+                  22 participantes
                 </span>
               </div>
 
@@ -56,7 +56,7 @@ export function Home() {
               <div className="flex flex-col pl-4 w-56 gap-1">
                 <strong className="text-white font-bold text-base">Real Ville</strong>
                 <span className="font-semibold text-gray-400 text-sm">
-                  15 participantes
+                  10 participantes
                 </span>
               </div>
 

@@ -1012,15 +1012,17 @@ const games =  [
         ]
 
 const gamesToAdd = games.map( game => {
-  const gameDate = new Date(game.date)
+  const gameDate = new Date(game.date+' '+game.time)
+  gameDate.setHours(gameDate.getHours() - 3)
   const gameDia = new Intl.DateTimeFormat("pt-BR", {
     weekday: "short",
     month: "numeric",
-    day: "numeric"
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric"
   }).format(gameDate).toLocaleUpperCase().replace('.', '')
-  console
   return {
-    played_at: gameDia+ ' ' + game.time,
+    played_at: gameDia.replace(/,/g, "") ,
     first_country_id: game.homeTeam.name,
     second_country_id: game.awayTeam.name,
     group: game.group
@@ -1030,7 +1032,7 @@ const gamesToAdd = games.map( game => {
 
   gamesToAdd.forEach(async game => {
     try {
-      const response = await fetch("http://localhost:3000/games/add", {
+      const response = await fetch("http://localhost:3000/api/games/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
