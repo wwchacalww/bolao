@@ -27,7 +27,7 @@ export function Home() {
               <div className="flex flex-col pl-4 w-56 gap-1">
                 <strong className="text-white font-bold text-base">Família Cartaxo</strong>
                 <span className="font-semibold text-gray-400 text-sm">
-                  22 participantes
+                  25 participantes
                 </span>
               </div>
 
@@ -45,7 +45,7 @@ export function Home() {
       </div>
 
       <div className="flex flex-col items-center mb-2 gap-3">
-        <Link to="/cartaxo">
+        <Link to="/realville">
           <div className="flex flex-col w-80 py-2 rounded-lg items-center justify-center bg-gray-900">
             <div className="flex flex-row w-full px-4 items-center">
               <img
@@ -56,7 +56,7 @@ export function Home() {
               <div className="flex flex-col pl-4 w-56 gap-1">
                 <strong className="text-white font-bold text-base">Real Ville</strong>
                 <span className="font-semibold text-gray-400 text-sm">
-                  10 participantes
+                  11 participantes
                 </span>
               </div>
 
