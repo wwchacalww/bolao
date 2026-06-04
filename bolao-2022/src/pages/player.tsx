@@ -20,6 +20,7 @@ type partidaProps = {
   second_flag: string;
   bet: string;
   result?: string;
+  group?: string;
 };
 
 type OutputListBestByPlayer = {
@@ -48,11 +49,11 @@ export function Player() {
   return (
     <>
       <Header
-        name="EUROCOPA 2024"
-        avatarUrl="https://logospng.org/download/copa-do-mundo-qatar-2022/logo-copa-do-mundo-qatar-2022-256.png"
+        name="Copa 2026"
+        avatarUrl="https://upload.wikimedia.org/wikipedia/pt/d/d7/Logo_copa_2026.png"
       />
       <div className="py-4 flex flex-col align-middle items-center">
-        <Title text="PARTICIPANTES" type={1} />
+        <Title text="PARTICIPANTE" type={1} />
       </div>
 
       <div className="flex flex-col items-center mb-2">
@@ -82,62 +83,223 @@ export function Player() {
             </div>
           </div>
 
-          <div className="flex flex-row w-full px-4 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
             <div className="flex flex-col items-center mb-2">
-            {bets?.map((bet, ind) => {
-              if(ind < 8) {
-                return (
-                  <Partida
-                    key={bet.played_at + bet.first_slug}
-                    bet={bet.bet}
-                    played_at={bet.played_at}
-                    first_flag={bet.first_flag}
-                    first_slug={bet.first_slug}
-                    second_flag={bet.second_flag}
-                    second_slug={bet.second_slug}
-                    result={bet.result}
-                  />
-                );
-              }
-            })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo A") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo B") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
             </div>
             <div className="flex flex-col items-center mb-2 mx-4">
-            {bets?.map((bet, ind) => {
-              if(ind >= 8 && ind <=15) {
-                return (
-                  <Partida
-                    key={bet.played_at + bet.first_slug}
-                    bet={bet.bet}
-                    played_at={bet.played_at}
-                    first_flag={bet.first_flag}
-                    first_slug={bet.first_slug}
-                    second_flag={bet.second_flag}
-                    second_slug={bet.second_slug}
-                    result={bet.result}
-                  />
-                );
-              }
-            })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo C") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo D") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+            </div>
+            <div className="flex flex-col items-center mb-2 mx-4">
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo E") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo F") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+            </div>
+            <div className="flex flex-col items-center mb-2 mx-4">
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo G") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo H") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+            </div>
+            <div className="flex flex-col items-center mb-2 mx-4">
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo I") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo J") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
             </div>
             <div className="flex flex-col items-center mb-2">
-            {bets?.map((bet, ind) => {
-              if(ind >= 16 && ind <=23) {
-                return (
-                  <Partida
-                    key={bet.played_at + bet.first_slug}
-                    bet={bet.bet}
-                    played_at={bet.played_at}
-                    first_flag={bet.first_flag}
-                    first_slug={bet.first_slug}
-                    second_flag={bet.second_flag}
-                    second_slug={bet.second_slug}
-                    result={bet.result}
-                  />
-                );
-              }
-            })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo K") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
+              {bets?.map((bet, ind) => {
+                if (bet.group === "Grupo L") {
+                  return (
+                    <Partida
+                      key={bet.played_at + bet.first_slug}
+                      bet={bet.bet}
+                      played_at={bet.played_at}
+                      first_flag={bet.first_flag}
+                      first_slug={bet.first_slug}
+                      second_flag={bet.second_flag}
+                      second_slug={bet.second_slug}
+                      result={bet.result}
+                      group={bet.group}
+                    />
+                  );
+                }
+              })}
             </div>
-
           </div>
         </div>
       </div>

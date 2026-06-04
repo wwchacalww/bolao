@@ -15,6 +15,7 @@ type partidaProps = {
   second_flag: string;
   bet: string;
   result?: string;
+  group?: string;
 };
 
 export class PlayersRepository implements PlayersRepositoryInterface {
@@ -110,6 +111,7 @@ export class PlayersRepository implements PlayersRepositoryInterface {
 
       const match = {
         played_at: bet.game.played_at,
+        group: bet.game.group,
         bet: bet.bet,
         result: bet.game.match_score || "",
         first_slug: ft_ctr.slug,

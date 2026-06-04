@@ -6,6 +6,7 @@ type partidaProps = {
   second_flag: string;
   bet: string;
   result?: string;
+  group?: string;
 };
 
 function checkResult(result: string) {
@@ -30,6 +31,7 @@ export function Partida(props: partidaProps) {
     second_slug,
     bet,
     result = "",
+    group = "",
   } = props;
 
   const b = bet.split("-");
@@ -49,7 +51,10 @@ export function Partida(props: partidaProps) {
 
   return (
     <div className="flex flex-col items-center my-2">
-      <span className="text-xs text-gray-400">{played_at}</span>
+      <div className="flex flex-row w-full align-middle items-center justify-between px-4">
+        <span className="text-xs text-gray-400 ">{group}</span>
+        <span className="text-xs text-gray-100">{played_at}</span>
+      </div>
 
       <div
         className={`flex flex-row items-center justify-center gap-2 mt-2 w-72 h-10 rounded-lg ${bg}`}
