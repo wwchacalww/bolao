@@ -123,6 +123,7 @@ export function BetsGroup() {
   };
 
   const handleSaveGroupBets = async () => {
+    event?.preventDefault()
     const inputBets: inputBetsDTO = {
       player_id: player?.id || "",
       bets: [],
