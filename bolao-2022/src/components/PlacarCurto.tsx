@@ -52,7 +52,7 @@ export function PlacarCurto(props: partidaProps) {
   return (
     <div className="flex flex-col items-center">
       <div
-        className={`flex flex-row items-center justify-center gap-2 mt-2 w-32 h-10 rounded-lg ${bg}`}
+        className={`flex flex-row items-center justify-center gap-2 mt-2 w-40 h-10 rounded-lg ${bg}`}
       >
         <img src={first_flag} className="w-6 h-4" alt="" />
         <div className="w-6 h-6 rounded-md bg-white text-center border border-black">

@@ -91,7 +91,7 @@ export function GameRealVille() {
                 return (
                   <>
                     {/* Gameplay */}
-                    <div className="flex flex-row w-80 p-2 rounded-lg items-center justify-center bg-gray-900">
+                    <div className="flex flex-row w-96 p-2 rounded-lg items-center justify-center bg-gray-900">
                       <div className="flex flex-row w-full px-4 items-center" >
                         <img
                           className="h-12 w-12 rounded-full"
