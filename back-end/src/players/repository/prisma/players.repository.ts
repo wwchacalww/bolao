@@ -143,18 +143,29 @@ export class PlayersRepository implements PlayersRepositoryInterface {
   }
 
   async listPlayersWithBets(group?: string): Promise<Player[]> {
-    const players = await prisma.players.findMany({
-      where: {
-        group: group || "CARTAXO",
-      },
-      include: {
-        Bets: true,
-      },
-      orderBy: {
-        score: "desc",
-      },
-    });
-
+    let players;
+    if (group === "all") {
+      players = await prisma.players.findMany({
+        include: {
+          Bets: true,
+        },
+        orderBy: {
+          score: "desc",
+        },
+      });
+    }else {
+      players = await prisma.players.findMany({
+        where: {
+          group: group || "CARTAXO",
+        },
+        include: {
+          Bets: true,
+        },
+        orderBy: {
+          score: "desc",
+        },
+      });
+    }
     const playerReturn: Player[] = [];
     players.forEach((player) => {
       const { id, name, group, score, Bets } = player;
@@ -177,7 +188,6 @@ export class PlayersRepository implements PlayersRepositoryInterface {
     if (!find) {
       throw new Error("Jogador não encontrado");
     }
-    console.log(find);
     await prisma.players.update({
       where: {
         id,

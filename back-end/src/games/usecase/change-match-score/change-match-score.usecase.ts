@@ -19,7 +19,7 @@ export class ChangeMatchScoreUsecase {
 
     await repository.changeMatchScore(game.game);
 
-    const players = await playersRepository.listPlayersWithBets();
+    const players = await playersRepository.listPlayersWithBets("all");
 
     players.forEach(async (player) => {
       await playersRepository.listBetsByPlayer(player.id);

@@ -74,13 +74,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
@@ -95,13 +95,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
@@ -116,13 +116,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
@@ -137,13 +137,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
@@ -158,13 +158,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
@@ -179,13 +179,13 @@ export function Cartaxo() {
                 <Link to={`/game/cartaxo/${bet.id}`} className="rounded-lg bg-gray-800 mb-1 px-1">
                   <Partida
                     key={bet.id + bet.first_slug}
-                    bet={bet.result ? bet.result : "0-0"}
+                    bet={bet.match_score ? bet.match_score : "_-_"}
+                    result={bet.match_score ? bet.match_score : ""}
                     played_at={bet.played_at}
                     first_flag={bet.first_flag}
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
                     group={bet.group}
                   />
                 </Link>
