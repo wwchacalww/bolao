@@ -2,6 +2,7 @@ import { GamesRepository } from "../../repository/prisma/games.repository";
 
 type OutputGameAndResult = {
   id: string;
+  group?: string;
   played_at: string;
   first_slug: string;
   first_flag: string;
@@ -23,6 +24,7 @@ export class GamesAndResultsUsecase {
     games.forEach((game) => {
       gamesOutput.push({
         id: game.id,
+        group: game.group,
         played_at: game.played_at,
         first_slug: game.first_country.slug,
         first_flag: game.first_country.flag,

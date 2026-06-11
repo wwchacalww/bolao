@@ -9,7 +9,7 @@ export function Home() {
     <>
       <Header
         name="COPA 2026"
-        avatarUrl="https://upload.wikimedia.org/wikipedia/pt/d/d7/Logo_copa_2026.png"
+        avatarUrl="/src/assets/imgs/2026_FIFA_World_Cup_logo.svg"
       />
       <div className="py-4 flex flex-col align-middle items-center">
         <Title text="Lista de Bolões" type={1} />
@@ -21,7 +21,7 @@ export function Home() {
             <div className="flex flex-row w-full px-4 items-center">
               <img
                 className="h-12 w-12 rounded-full"
-                src={`https://upload.wikimedia.org/wikipedia/commons/7/7a/CTX1.png`}
+                src={`/src/assets/imgs/2026_FIFA_World_Cup_logo.svg`}
               />
 
               <div className="flex flex-col pl-4 w-56 gap-1">
@@ -56,7 +56,7 @@ export function Home() {
               <div className="flex flex-col pl-4 w-56 gap-1">
                 <strong className="text-white font-bold text-base">Real Ville</strong>
                 <span className="font-semibold text-gray-400 text-sm">
-                  11 participantes
+                  13 participantes
                 </span>
               </div>
 

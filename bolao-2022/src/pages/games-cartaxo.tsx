@@ -28,6 +28,7 @@ type GameProp = {
 type PlayerBetProp = {
   id: string;
   name: string;
+  group: string;
   score: number;
   bet: string;
 }
@@ -37,7 +38,7 @@ type GamePlayProp = {
   gameplay: PlayerBetProp[]
 }
 
-export function Game() {
+export function GameCartaxo() {
   const [gameplay, setGameplay] = useState<GamePlayProp>();
   const { game_id } = useParams<{ game_id: string }>();
   useEffect(() => {
@@ -45,18 +46,17 @@ export function Game() {
       setGameplay(response.data);
     });
   }, []);
-  console.log(gameplay)
   return (
     <>
       <Header
         name="COPA 2026"
-        avatarUrl="https://logospng.org/download/copa-do-mundo-qatar-2022/logo-copa-do-mundo-qatar-2022-256.png"
+        avatarUrl="/src/assets/imgs/2026_FIFA_World_Cup_logo.svg"
       />
       <div className="py-4 flex flex-col align-middle items-center">
         <Title text="PARTIDA" type={1} />
       </div>
 
-      <div className="flex flex-col items-center mb-2 gap-3">
+      <div className="flex flex-col items-center mb-2 gap-2">
         {gameplay && gameplay.game ? (
           <Partida
             bet={gameplay.game.match_score}
@@ -66,6 +66,7 @@ export function Game() {
             second_flag={gameplay.game.second_country.flag}
             second_slug={gameplay.game.second_country.slug}
             result={gameplay.game.match_score}
+            group={gameplay.game.group}
           />
         ) : (<> </>)}
         {/* {players ? (
@@ -83,44 +84,45 @@ export function Game() {
         ) : (
           <></>
         )} */}
-
-        {gameplay && gameplay.gameplay ? (
-          gameplay.gameplay.map(gp => {
-            if (gp !== null) {
-              return (
-                <>
-                  {/* Gameplay */}
-                  <div className="flex flex-col w-80 py-2 rounded-lg items-center justify-center bg-gray-900">
-                    <div className="flex flex-row w-full px-4 items-center" >
-                      <img
-                        className="h-12 w-12 rounded-full"
-                        src={`/src/assets/fotos/${gp.id}.jpg`}
-                      />
-                      <div className="flex flex-col pl-4 gap-1">
-                        <strong className="text-white font-bold text-base">
-                          {gp.name}
-                        </strong>
-                        <span className="font-semibold text-gray-400 text-sm">
-                          {gp.score} pontos
-                        </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+          {gameplay && gameplay.gameplay ? (
+            gameplay.gameplay.map(gp => {
+              if (gp !== null && gp.group === "CARTAXO") {
+                return (
+                  <>
+                    {/* Gameplay */}
+                    <div className="flex flex-row w-80 p-2 rounded-lg items-center justify-center bg-gray-900">
+                      <div className="flex flex-row w-full px-4 items-center" >
+                        <img
+                          className="h-12 w-12 rounded-full"
+                          src={`/src/assets/fotos/${gp.id}.jpg`}
+                        />
+                        <div className="flex flex-col pl-4 gap-1">
+                          <strong className="text-white font-bold text-base">
+                            {gp.name}
+                          </strong>
+                          <span className="font-semibold text-gray-400 text-sm">
+                            {gp.score} pontos
+                          </span>
+                        </div>
                       </div>
+                      <PlacarCurto
+                        bet={gp.bet}
+                        played_at={gameplay.game.played_at}
+                        first_flag={gameplay.game.first_country.flag}
+                        first_slug={gameplay.game.first_country.slug}
+                        second_flag={gameplay.game.second_country.flag}
+                        second_slug={gameplay.game.second_country.slug}
+                        result={gameplay.game.match_score}
+                      />
                     </div>
-                    <PlacarCurto
-                      bet={gp.bet}
-                      played_at={gameplay.game.played_at}
-                      first_flag={gameplay.game.first_country.flag}
-                      first_slug={gameplay.game.first_country.slug}
-                      second_flag={gameplay.game.second_country.flag}
-                      second_slug={gameplay.game.second_country.slug}
-                      result={gameplay.game.match_score}
-                    />
-                  </div>
-                  {/* Fim da gameplay */}
-                </>
-              )
-            }
-          })
-        ) : (<></>)}
+                    {/* Fim da gameplay */}
+                  </>
+                )
+              }
+            })
+          ) : (<></>)}
+        </div>
       </div>
     </>
   );

@@ -10,6 +10,8 @@ import { Player } from "./pages/player";
 import { Game } from "./pages/game";
 import { Cartaxo } from "./pages/cartaxo";
 import { Realville } from "./pages/realville";
+import { GameRealVille } from "./pages/games-realville";
+import { GameCartaxo } from "./pages/games-cartaxo";
 
 export function Router() {
   return (
@@ -25,6 +27,8 @@ export function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/games" element={<Games />} />
       <Route path="/game/:game_id" element={<Game />} />
+      <Route path="/game/cartaxo/:game_id" element={<GameCartaxo />} />
+      <Route path="/game/realville/:game_id" element={<GameRealVille />} />
     </Routes>
   );
 }

@@ -50,7 +50,7 @@ export function Player() {
     <>
       <Header
         name="Copa 2026"
-        avatarUrl="https://upload.wikimedia.org/wikipedia/pt/d/d7/Logo_copa_2026.png"
+        avatarUrl="/src/assets/imgs/2026_FIFA_World_Cup_logo.svg"
       />
       <div className="py-4 flex flex-col align-middle items-center">
         <Title text="PARTICIPANTE" type={1} />
