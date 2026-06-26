@@ -164,7 +164,7 @@ export function Realville() {
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
+                    result={bet.match_score ? bet.match_score : ""}
                     group={bet.group}
                   />
                 </Link>
@@ -185,7 +185,7 @@ export function Realville() {
                     first_slug={bet.first_slug}
                     second_flag={bet.second_flag}
                     second_slug={bet.second_slug}
-                    result={""}
+                    result={bet.match_score ? bet.match_score : ""}
                     group={bet.group}
                   />
                 </Link>
